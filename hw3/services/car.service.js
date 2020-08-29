@@ -1,20 +1,33 @@
-let array = [
-    {id: "1", producer: "honda", year: "2004", color: "black"},
-    {id: "2", producer: "audi", year: "1999", color: "red"},
-    {id: "3", producer: "tesla", year: "2015", color: "white"},
-];
+const carsArray = require('../database');
 
 module.exports = {
     selectAllFromCars: () => {
-        return array;
+        return carsArray;
     },
 
-    // selectCarById: (carId) => {
-    //     const car = array.find(carId);
-    //     console.log(car);
-    // },
+    selectCarById: (carId) => {
+        return carsArray.find(car => car.id === carId);
+    },
 
-    createNewCar: (carObject) => {
-        array.push(carObject);
+    deleteCarById: (carId) => {
+        carsArray.map((car, carIndex) => {
+            car.id === carId ? carsArray.splice(carIndex, 1) : carsArray;
+        })
+    },
+
+    updateCarById: (carId, newParamsCar) => {
+        carsArray.map(car => {
+            if(car.id === carId){
+                for (let key in car){
+                    for (let newKey in newParamsCar){
+                        car[key] = newParamsCar[key];
+                    }
+                }
+            }
+        });
+    },
+
+    createNewCar: (newCar) => {
+        carsArray.push(newCar);
     }
 };

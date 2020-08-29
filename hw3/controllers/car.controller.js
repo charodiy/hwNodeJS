@@ -6,14 +6,24 @@ module.exports = {
         res.json(carsArray);
     },
 
-    // getCarById: (req, res) => {
-    //   const carById = carService.selectCarById(req.body.id);
-    //   res.json(carById);
-    // },
+    getCarById: (req, res) => {
+        console.log(req.params);
+        const car = carService.selectCarById(req.params.id);
+        res.json(car);
+    },
+
+    removeCarById: (req, res) => {
+        carService.deleteCarById(req.params.id);
+        res.end('Car deleted');
+    },
+
+    updateCarById: (req, res) => {
+        carService.updateCarById(req.params.id, req.body);
+        res.end('Car updated');
+    },
 
     createCar: (req, res) => {
-        console.log(req.body, '---', req.body.id);
         carService.createNewCar(req.body);
         res.end('Car created');
-    },
+    }
 };
