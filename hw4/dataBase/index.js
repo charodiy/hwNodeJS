@@ -6,13 +6,35 @@ let carsArray = [
 
 module.exports = carsArray;
 
-const mysql2 = require('mysql2');
+// const mysql2 = require('mysql2');
+//
+// let connection = mysql2.createConnection({
+//    user: "root",
+//    host: "localhost",
+//    password: "root",
+//    database: "auto_shop"
+// });
+//
+// module.exports = connection;
 
-let connection = mysql2.createConnection({
-   user: "user",
-   host: "localhost",
-   password: "user",
-   database: "auto_shop"
-});
+const Sequelize = require('sequelize');
 
-module.exports = connection;
+module.exports = (() => {
+    let instance;
+
+    function initConnection() {
+        const client = new Sequelize('auto_shop', 'root', 'root', {
+            host: 'localhost',
+            dialect: 'mysql'
+        });
+    }
+
+    return {
+        getInstance: () => {
+            if (!instance) {
+                instance = initConnection();
+            }
+            return instance;
+        }
+    }
+})();
