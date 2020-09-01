@@ -5,3 +5,14 @@ let carsArray = [
 ];
 
 module.exports = carsArray;
+
+const mysql2 = require('mysql2');
+
+let connection = mysql2.createConnection({
+   user: "user",
+   host: "localhost",
+   password: "user",
+   database: "auto_shop"
+});
+
+module.exports = connection;
