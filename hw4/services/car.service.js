@@ -1,33 +1,32 @@
-const carsArray = require('../dataBase');
+const connection = require('../dataBase').getInstance();
 
 module.exports = {
-    selectAllFromCars: () => {
-        return carsArray;
+
+    findAllCars: async () => {
+        const Car = connection.getModel('Car');
+        return Car.findAll({});
     },
 
-    selectCarById: (carId) => {
-        return carsArray.find(car => car.id === carId);
+    createNewCar: async (carObject) => {
+        const Car = connection.getModel('Car');
+        return Car.create(carObject, {new: true});
     },
 
-    deleteCarById: (carId) => {
-        carsArray.map((car, carIndex) => {
-            car.id === carId ? carsArray.splice(carIndex, 1) : carsArray;
+    deleteCarById: async (carId) => {
+        const Car = connection.getModel('Car');
+        return Car.destroy({
+            where: {
+                id: carId
+            }
         })
     },
 
-    updateCarById: (carId, newParamsCar) => {
-        carsArray.map(car => {
-            if(car.id === carId){
-                for (let key in car){
-                    for (let newKey in newParamsCar){
-                        car[key] = newParamsCar[key];
-                    }
-                }
+    updateCarById: async (carId, newCar) => {
+        const Car = connection.getModel('Car');
+        return Car.update(newCar, {
+            where: {
+                id: carId
             }
-        });
+        })
     },
-
-    createNewCar: (newCar) => {
-        carsArray.push(newCar);
-    }
 };

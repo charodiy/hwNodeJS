@@ -3,16 +3,16 @@ module.exports = {
         try {
             const car = req.body;
 
-            if (!car.id || !car.year || !car.producer || !car.color) {
-                throw new Error("Please input all data: id, year, producer, color")
-            }
-
-            if (car.id < 0) {
-                throw new Error("It is impossible!")
+            if (!car.year || !car.model || !car.price) {
+                throw new Error("Please input all data: year, model, price")
             }
 
             if (car.year.length !== 4 || car.year <= 0) {
-                throw new Error("Wrong year")
+                throw new Error("Wrong year");
+            }
+
+            if (car.price <= 0) {
+                throw new Error("Wrong price");
             }
 
             next();

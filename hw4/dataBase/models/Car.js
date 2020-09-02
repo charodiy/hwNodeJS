@@ -4,5 +4,9 @@ module.exports = (sequelize, DataTypes) => {
         model: {type: DataTypes.STRING, allowNull: false},
         price: {type: DataTypes.INTEGER, allowNull: false},
         year: {type: DataTypes.INTEGER, allowNull: false}
-    })
+    }, {
+        tableName: 'cars',
+        timestamps: false
+    });
+    return Car;
 };

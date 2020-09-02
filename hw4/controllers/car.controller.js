@@ -1,29 +1,42 @@
-const carService = require('../services/car.service');
+const carsService = require('../services/car.service');
 
 module.exports = {
-    getAllOfCars: (req, res) => {
-        const carsArray = carService.selectAllFromCars();
-        res.json(carsArray);
+    fetchAllCars: async (req, res) => {
+        try {
+            const cars = await carsService.findAllCars();
+            res.json(cars);
+        } catch (e) {
+            res.json(e.message);
+        }
     },
 
-    getCarById: (req, res) => {
-        console.log(req.params);
-        const car = carService.selectCarById(req.params.id);
-        res.json(car);
+    createCar: async (req, res) => {
+        try {
+            const car = await carsService.createNewCar(req.body);
+
+            res.status(201).json(car);
+        } catch (e) {
+            res.json(e.message);
+        }
     },
 
-    removeCarById: (req, res) => {
-        carService.deleteCarById(req.params.id);
-        res.end('Car deleted');
+    removeCar: async (req, res) => {
+        try {
+            await carsService.deleteCarById(req.params.id);
+
+            res.json('Car deleted');
+        } catch (e) {
+            res.json(e.message);
+        }
     },
 
-    updateCarById: (req, res) => {
-        carService.updateCarById(req.params.id, req.body);
-        res.end('Car updated');
-    },
+    updateCar: async (req, res) => {
+        try {
+            await carsService.updateCarById(req.params.id, req.body);
 
-    createCar: (req, res) => {
-        carService.createNewCar(req.body);
-        res.end('Car created');
+            res.json('Car updated');
+        } catch (e) {
+            res.json(e.message);
+        }
     }
 };
