@@ -1,15 +1,3 @@
-
-// const mysql2 = require('mysql2');
-//
-// let connection = mysql2.createConnection({
-//    user: "root",
-//    host: "localhost",
-//    password: "root",
-//    database: "auto_shop"
-// });
-//
-// module.exports = connection;
-
 const {Sequelize, DataTypes} = require('sequelize');
 const fs = require('fs');
 const path = require('path');

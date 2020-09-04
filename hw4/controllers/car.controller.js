@@ -1,10 +1,19 @@
 const carsService = require('../services/car.service');
 
 module.exports = {
-    fetchAllCars: async (req, res) => {
+    getCars: async (req, res) => {
         try {
-            const cars = await carsService.findAllCars();
+            const cars = await carsService.getAllCars();
             res.json(cars);
+        } catch (e) {
+            res.json(e.message);
+        }
+    },
+
+    getCar: async (req, res) => {
+        try {
+            const car = await carsService.getCarById(req.params.id);
+            res.json(car);
         } catch (e) {
             res.json(e.message);
         }
@@ -23,7 +32,6 @@ module.exports = {
     removeCar: async (req, res) => {
         try {
             await carsService.deleteCarById(req.params.id);
-
             res.json('Car deleted');
         } catch (e) {
             res.json(e.message);
@@ -33,7 +41,6 @@ module.exports = {
     updateCar: async (req, res) => {
         try {
             await carsService.updateCarById(req.params.id, req.body);
-
             res.json('Car updated');
         } catch (e) {
             res.json(e.message);

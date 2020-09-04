@@ -2,9 +2,18 @@ const connection = require('../dataBase').getInstance();
 
 module.exports = {
 
-    findAllCars: async () => {
+    getAllCars: async () => {
         const Car = connection.getModel('Car');
         return Car.findAll({});
+    },
+
+    getCarById: async (carId) => {
+        const Car = connection.getModel('Car');
+        return Car.findAll({
+            where: {
+                id: carId
+            }
+        })
     },
 
     createNewCar: async (carObject) => {
