@@ -1,13 +1,13 @@
-const usersArray = require('../database');
+const connection = require('../database').getInstance();
 
 module.exports = {
-    selectAllFromUsers: () => {
-        return usersArray;
+    selectAllFromUsers: async () => {
+        const User = connection.getModel('User')
+        return User.findAll({});
     },
 
-    addNewUser: (newUser) => {
-        usersArray.push(newUser);
-        return usersArray;
+    addNewUserToDataBase: (newUser) => {
+        const User = connection.getModel('User');
+        return User.create(newUser, {new: true});
     }
-}
-;
+};

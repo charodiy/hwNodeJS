@@ -1,5 +1,5 @@
 module.exports = {
     getRegistrationPage: (req, res) => {
-        res.render('registration/registration');
+        return res.render('registration/registration');
     }
 };
