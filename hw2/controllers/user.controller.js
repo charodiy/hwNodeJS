@@ -14,7 +14,7 @@ module.exports = {
 
     addUser: async (req, res) => {
         try {
-            const {error} = Joi.validate(req.body, newUserValidator);
+            const {error} = newUserValidator.validate(req.body)
             if(error) {
                 return res.json(error.details[0].message)
             }
