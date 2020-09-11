@@ -7,7 +7,7 @@ module.exports = {
                 throw new Error("Please input all data: year, model, price")
             }
 
-            if (car.year.length !== 4 || car.year <= 0) {
+            if (car.year >= new Date().getFullYear() || car.year <= 0) {
                 throw new Error("Wrong year");
             }
 
