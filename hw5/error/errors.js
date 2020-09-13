@@ -12,11 +12,11 @@ module.exports = {
         code:4003
     },
     BAD_REQUEST_WRONG_YEAR: {
-        message: "The year cannot be less than zero or greater than today",
+        message: "Year cannot be less than zero or greater than today",
         code:4004
     },
     BAD_REQUEST_WRONG_PRICE: {
         message: "Price cannot be less zero",
         code:4005
-    },
+    }
 }

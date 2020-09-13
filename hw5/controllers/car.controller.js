@@ -23,7 +23,8 @@ module.exports = {
         try {
             const car = await carsService.createNewCar(req.body);
 
-            res.status(201).json(car);
+            // res.status(201).json(car);
+            res.json('created car')
         } catch (e) {
             res.json(e.message);
         }
