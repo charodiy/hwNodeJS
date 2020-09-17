@@ -10,10 +10,10 @@ app.use(express.json());
 app.use('/api', apiRouter);
 
 app.use('*', (err, req, res, next) => {
-    res.status(err.status)
+    res.status(err.status || 404)
         .json({
-            message: err.message,
-            code: err.customCode
+            message: err.message || 'NOT FOUND',
+            code: err.customCode || ''
         })
 })
 

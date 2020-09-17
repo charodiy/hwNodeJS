@@ -6,7 +6,7 @@ module.exports = {
             const cars = await carsService.getAllCars();
             res.json(cars);
         } catch (e) {
-            res.json(e.message);
+            return res.status(400).end(e.message);
         }
     },
 
@@ -15,7 +15,7 @@ module.exports = {
             const car = await carsService.getCarById(req.params.id);
             res.json(car);
         } catch (e) {
-            res.json(e.message);
+            return res.status(400).end(e.message);
         }
     },
 
@@ -23,10 +23,9 @@ module.exports = {
         try {
             const car = await carsService.createNewCar(req.body);
 
-            // res.status(201).json(car);
-            res.json('created car')
+            res.json(car);
         } catch (e) {
-            res.json(e.message);
+            return res.status(400).end(e.message);
         }
     },
 
@@ -35,7 +34,7 @@ module.exports = {
             await carsService.deleteCarById(req.params.id);
             res.json('Car deleted');
         } catch (e) {
-            res.json(e.message);
+            return res.status(400).end(e.message);
         }
     },
 
@@ -44,7 +43,7 @@ module.exports = {
             await carsService.updateCarById(req.params.id, req.body);
             res.json('Car updated');
         } catch (e) {
-            res.json(e.message);
+            return res.status(400).end(e.message);
         }
     }
 };

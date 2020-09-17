@@ -7,8 +7,8 @@ module.exports = {
 
             if (!car.year || !car.model || !car.price) {
                 return next(new ErrorHandler(
-                    errors.BAD_REQUEST_NOT_VALID_USER_DATA.message,
-                    errors.BAD_REQUEST_NOT_VALID_USER_DATA.code,
+                    errors.NOT_FOUND_DATA.message,
+                    errors.NOT_FOUND_DATA.code,
                     statusCodesEnum.BAD_REQUEST
                 ))
             }
@@ -28,9 +28,9 @@ module.exports = {
                     statusCodesEnum.BAD_REQUEST
                 ));
             }
-
+            next();
         } catch (e) {
-            return next(e);
+            next(e)
         }
     }
 };

@@ -21,6 +21,15 @@ module.exports = {
         })
     },
 
+    getUserByUserName: async (userName) => {
+        const User = connection.getModel('User');
+        return User.findAll({
+            where: {
+                userName: userName
+            }
+        })
+    },
+
     deleteUserById: async (userId) => {
         const User = connection.getModel('User');
         return User.destroy({
